@@ -7,12 +7,12 @@ The bot messages are processed by an Azure Function.
 We need to create a new telegram bot, deploy the Azure Function and configure a webhook so the messages received by the bot are processed by the Azure Function. 
 
 To test the Azure function locally: 
-```bash
+```console
 func start
 ```
 
 And we can send a test: 
-```bash
+```console
 curl --location 'http://localhost:7071/api/onMessage' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -40,13 +40,13 @@ curl --location 'http://localhost:7071/api/onMessage' \
 
 To deploy the Azure function: 
 
-```bash
+```console
 az login
 func azure functionapp publish azure-functions-resource-name
 ```
 
 And then to test the endpoint: 
-```bash
+```console
 curl --location 'https://<your-function-app>.azurewebsites.net/api/onmessage?code=function_key_value' \
 --header 'Content-Type: application/json' \
 --data '{
@@ -73,7 +73,7 @@ curl --location 'https://<your-function-app>.azurewebsites.net/api/onmessage?cod
 ```
 
 At last, to set the telegram webhook: 
-```bash
+```console
 curl -F "url=https://<your-function-app>.azurewebsites.net/api/<your-function-name>?code=<your-function-key>" https://api.telegram.org/bot<YourBOTToken>/setWebhook
 
 ```
